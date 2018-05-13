@@ -53,7 +53,7 @@ The quickstart example transcribes audio using a generic English model.
 
 In order to retain accuracy with unique word sets, create a custom model.
 
-For this example, we create a model using a list of words/sentences found on a wikipedia page.
+For this example, we create a model using a **list** of words/sentences found on a wikipedia page.
 
 Create the custom model.
 
@@ -63,6 +63,7 @@ import wikipedia
 
 aai = assemblyai.Client(token='your-secret-api-token')
 
+# phrases is a list or words or sentences
 phrases = wikipedia.page("List of Pokemon characters").content.split('. ')
 
 model = aai.train(phrases)
