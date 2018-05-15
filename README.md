@@ -5,7 +5,7 @@
 [![](https://readthedocs.org/projects/assemblyai-python-sdk/badge/?version=latest)](https://readthedocs.org/projects/assemblyai-python-sdk)
 [![](https://pyup.io/repos/github/AssemblyAI/assemblyai-python-sdk/shield.svg)](https://pyup.io/repos/github/AssemblyAI/assemblyai-python-sdk)
 [![](https://codecov.io/gh/AssemblyAI/assemblyai-python-sdk/branch/master/graph/badge.svg)](https://codecov.io/gh/AssemblyAI/assemblyai-python-sdk)
-[![](https://api.codeclimate.com/v1/badges/00f7edad5531b210b61f/maintainability)](https://codeclimate.com/github/brennv/assemblyai-python-sdk/maintainability)
+[![](https://api.codeclimate.com/v1/badges/a4fbbc5b564389549af7/maintainability)](https://codeclimate.com/repos/5afb734416a00d6f410000a9/maintainability)
 
 Transcribe audio into text. Recognize made-up words and boost accuracy using custom language models.
 
