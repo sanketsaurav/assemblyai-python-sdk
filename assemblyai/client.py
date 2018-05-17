@@ -31,11 +31,11 @@ class Client(object):
         self.model = self.model.create()
         return self.model
 
-    def transcribe(self, audio_url, model=None):
+    def transcribe(self, filename=None, audio_url=None, model=None):
         """Create a transcript request. If the transcript depends on a
         custom language model, defer creation until model is trained."""
         client = self
-        self.transcript = Transcript(client, audio_url=audio_url,
-                                     model=model)
+        self.transcript = Transcript(client, filename=filename,
+                                     audio_url=audio_url, model=model)
         self.transcript = self.transcript.create()
         return self.transcript
