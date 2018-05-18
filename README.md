@@ -137,3 +137,24 @@ transcript.dict
 ```
 
 For additional background see: https://docs.assemblyai.com
+
+
+## Development
+
+Install dev requirements, install from source and run tests.
+
+```shell
+pip install -r requirements_dev.txt
+python setup.py install
+tox
+```
+
+
+## Contributing
+
+Bug reports and pull requests welcome.
+
+
+## Release notes
+
+**0.1.13** introduced the ability to transcribe local files (still experimental).
