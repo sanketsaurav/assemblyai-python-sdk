@@ -5,9 +5,6 @@ import logging
 from uuid import uuid4
 
 from assemblyai.exceptions import handle_warnings
-from boto3.s3.transfer import S3Transfer
-import boto3
-import botocore
 import requests
 
 
@@ -107,23 +104,10 @@ class Transcript(object):
 
     def upload(self, filepath):
         """Upload a file."""
-        client = boto3.client('s3')
-        # , aws_access_key_id=access_key, aws_secret_access_key=secret_key)
-        transfer = S3Transfer(client)
-        # filename = filepath.split('/')[-1]
-        s3_bucket = 'chappy-temp'  # target.split('/')[0]
-        s3_path = str(uuid4())
-        if '.' in filepath:
-            type = filepath.split('.')[-1].strip().strip('/').strip()
-            s3_path = '.'.join([s3_path, type])
-        # '/'.join(target.split('/')[1:] + [filename])
-        transfer.upload_file(filepath, s3_bucket, s3_path)
-        # get url
-        s3 = boto3.client('s3')
-        config = s3._client_config
-        config.signature_version = botocore.UNSIGNED
-        params = {'Bucket': s3_bucket, 'Key': s3_path}
-        url = boto3.resource('s3', config=config).meta.client.generate_presigned_url(
-            'get_object', ExpiresIn=0, Params=params)
-        # self.upload = s3_path
+        upload_url = 'https://api.assemblyai.com/upload'
+        presigned_url = requests.post(upload_url, headers=self.headers)
+        with open(filepath, 'rb') as f:
+            r = requests.post(presigned_url, files={'file': f})
+        r.raise_for_status()
+        url = presigned_url.split('?')[0]
         return url

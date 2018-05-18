@@ -22,11 +22,17 @@ Run pip install and get an API token from https://assemblyai.com
 Quickstart
 ----------
 
+Start transcribing:
+
     import assemblyai
 
-    aai = assemblyai.Client(token='your-secret-api-token')
+    aai = assemblyai.Client(token='secret-token')
 
-    transcript = aai.transcribe('https://example.com/sample.wav')
+    transcript = aai.transcribe(filename='example.wav')
+
+
+Get the completed transcript. Transcripts take about half the duration of the
+audio to complete.
 
     while transcript.status != 'completed':
         transcript = transcript.get()
@@ -34,7 +40,10 @@ Quickstart
     text = transcript.text
 
 
-Transcripts take about half the duration of the audio to complete.
+Instead of a local file, you can also specify a url for the audio file:
+
+
+    transcript = aai.transcribe(audio_url='https://example.com/example.wav')
 
 
 Custom language models
@@ -55,7 +64,7 @@ For this example, we create a model using a list of words/sentences found on a w
 
     model = aai.train(phrases)
 
-    transcript = aai.transcribe('https://example.com/pokemon.wav', model=model)
+    transcript = aai.transcribe(audio_url='https://example.com/pokemon.wav', model=model)
 
     while transcript.status != 'completed':
         transcript = transcript.get()

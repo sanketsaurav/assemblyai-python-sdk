@@ -31,9 +31,9 @@ Start transcribing:
 ```python
 import assemblyai
 
-aai = assemblyai.Client(token='your-secret-api-token')
+aai = assemblyai.Client(token='secret-token')
 
-transcript = aai.transcribe('https://example.com/sample.wav')
+transcript = aai.transcribe(filename='example.wav')
 ```
 
 Get the completed transcript. Transcripts take about half the duration of the
@@ -44,6 +44,12 @@ while transcript.status != 'completed':
     transcript = transcript.get()
 
 text = transcript.text
+```
+
+Instead of a local file, you can also specify a url for the audio file:
+
+```python
+transcript = aai.transcribe(audio_url='https://example.com/example.wav')
 ```
 
 
@@ -80,7 +86,7 @@ while model.status != 'trained':
 Reference the model when creating a transcript.
 
 ```python
-transcript = aai.transcribe('https://example.com/pokemon.wav', model=model)
+transcript = aai.transcribe(audio_url='https://example.com/pokemon.wav', model=model)
 ```
 
 
