@@ -51,7 +51,7 @@ class Transcript(object):
             self.warning = None
 
     def validate(self):
-        """Ensure filename and audio_url look sane."""
+        """Deconflict filename and audio_url."""
         if self.filename and not self.audio_url:
             if self.filename.startswith('http'):
                 self.audio_url = self.filename
@@ -113,9 +113,9 @@ class Transcript(object):
     def upload(self, filepath):
         """Upload a file."""
         upload_url = 'https://api.assemblyai.com/upload'
-        presigned_url = requests.post(upload_url, headers=self.headers)
-        with open(filepath, 'rb') as f:
-            r = requests.post(presigned_url, files={'file': f})
-        r.raise_for_status()
+        presigned_url = requests.post(upload_url, headers=self.headers).text
         url = presigned_url.split('?')[0]
+        with open(filepath, 'rb') as f:
+            r = requests.put(presigned_url, data=f.read())
+        r.raise_for_status()
         return url
