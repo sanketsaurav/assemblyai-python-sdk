@@ -18,13 +18,13 @@ def test_client_auth_error():
     """Test client without token throws auth error."""
     with pytest.raises(ClientError):
         aai = Client(token='foobar')
-        aai.transcribe(AUDIO_URL)
+        aai.transcribe(audio_url=AUDIO_URL)
 
 
 def test_client_transcribe():
     """Test client token authenticates and creates transcript."""
     aai = Client(token=ASSEMBLYAI_TOKEN)
-    transcript = aai.transcribe(AUDIO_URL)
+    transcript = aai.transcribe(audio_url=AUDIO_URL)
     assert transcript.status == 'queued'
     transcript_id = transcript.id
     while transcript.status != 'completed':
@@ -55,7 +55,7 @@ def test_client_train_transcribe():
     assert model_id == model.id
     model = model.get(id=model_id)
     assert model_id == model.id
-    transcript = aai.transcribe(AUDIO_URL, model=model)
+    transcript = aai.transcribe(audio_url=AUDIO_URL, model=model)
     assert transcript.id is None
     transcript = transcript.get()
     assert transcript.id is None
