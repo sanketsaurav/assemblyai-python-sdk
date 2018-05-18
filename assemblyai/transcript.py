@@ -2,7 +2,6 @@
 
 import json
 import logging
-from uuid import uuid4
 
 from assemblyai.exceptions import handle_warnings
 import requests
@@ -51,10 +50,19 @@ class Transcript(object):
             self.text_raw = None
             self.warning = None
 
-    def create(self):
-        # TODO remove model checking after api defaults to waiting for models
+    def validate(self):
+        """Ensure filename and audio_url look sane."""
         if self.filename and not self.audio_url:
-            self.audio_url = self.upload(self.filename)
+            if self.filename.startswith('http'):
+                self.audio_url = self.filename
+                self.filename = None
+            else:
+                self.audio_url = self.upload(self.filename)
+
+    def create(self):
+        """Create a transcript."""
+        # TODO remove model checking after api defaults to waiting for models
+        self.validate()
         if self.model:
             self.model = self.model.get()
         if self.model and self.model.status != 'trained':
