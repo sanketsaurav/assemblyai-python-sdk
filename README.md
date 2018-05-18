@@ -1,11 +1,14 @@
 # assemblyai
 
+![](https://img.shields.io/badge/Python-2.7%2C%203.5%2C%203.6-blue.svg)
 [![](https://img.shields.io/pypi/v/assemblyai.svg)](https://pypi.org/project/assemblyai/)
 [![](https://img.shields.io/travis/AssemblyAI/assemblyai-python-sdk.svg)](https://travis-ci.org/AssemblyAI/assemblyai-python-sdk/builds)
 [![](https://readthedocs.org/projects/assemblyai-python-sdk/badge/?version=latest)](https://readthedocs.org/projects/assemblyai-python-sdk)
 [![](https://pyup.io/repos/github/AssemblyAI/assemblyai-python-sdk/shield.svg)](https://pyup.io/repos/github/AssemblyAI/assemblyai-python-sdk)
 [![](https://codecov.io/gh/AssemblyAI/assemblyai-python-sdk/branch/master/graph/badge.svg)](https://codecov.io/gh/AssemblyAI/assemblyai-python-sdk)
 [![](https://api.codeclimate.com/v1/badges/a4fbbc5b564389549af7/maintainability)](https://codeclimate.com/repos/5afb734416a00d6f410000a9/maintainability)
+[![](https://img.shields.io/badge/Slack-community-71D4DF.svg)](https://docs.assemblyai.com/help/#slacksupport)
+![](https://img.shields.io/badge/Badge%20count-9-ff69b4.svg)
 
 Transcribe audio into text. Recognize made-up words and boost accuracy using custom language models.
 
