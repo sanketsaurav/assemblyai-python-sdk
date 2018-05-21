@@ -12,10 +12,13 @@
 
 Transcribe audio into text. Recognize made-up words and boost accuracy using custom language models.
 
-- Documentation: https://assemblyai-python-sdk.readthedocs.io
-- Issues: https://github.com/assemblyai/assemblyai-python-sdk
-- Support: https://assemblyai.com
-- Community: https://assemblyaicommunity.slack.com
+Documentation: 
+- https://docs.assemblyai.com
+- https://assemblyai-python-sdk.readthedocs.io
+
+Slack community: https://docs.assemblyai.com/help/#slacksupport
+
+Issues: https://github.com/assemblyai/assemblyai-python-sdk
 
 
 ## Getting started
