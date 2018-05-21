@@ -34,7 +34,7 @@ Start transcribing:
 ```python
 import assemblyai
 
-aai = assemblyai.Client(token='secret-token')
+aai = assemblyai.Client(token='your-secret-api-token')
 
 transcript = aai.transcribe(filename='example.wav')
 ```
