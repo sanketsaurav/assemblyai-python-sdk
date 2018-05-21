@@ -36,7 +36,7 @@ import assemblyai
 
 aai = assemblyai.Client(token='your-secret-api-token')
 
-transcript = aai.transcribe(filename='example.wav')
+transcript = aai.transcribe(filename='/path/to/example.wav')
 ```
 
 Get the completed transcript. Transcripts take about half the duration of the
