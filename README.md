@@ -12,10 +12,13 @@
 
 Transcribe audio into text. Recognize made-up words and boost accuracy using custom language models.
 
-- Documentation: https://assemblyai-python-sdk.readthedocs.io
-- Issues: https://github.com/assemblyai/assemblyai-python-sdk
-- Support: https://assemblyai.com
-- Community: https://assemblyaicommunity.slack.com
+Documentation: 
+- https://docs.assemblyai.com
+- https://assemblyai-python-sdk.readthedocs.io
+
+Slack community: https://docs.assemblyai.com/help/#slacksupport
+
+Issues: https://github.com/assemblyai/assemblyai-python-sdk
 
 
 ## Getting started
@@ -34,9 +37,9 @@ Start transcribing:
 ```python
 import assemblyai
 
-aai = assemblyai.Client(token='secret-token')
+aai = assemblyai.Client(token='your-secret-api-token')
 
-transcript = aai.transcribe(filename='example.wav')
+transcript = aai.transcribe(filename='/path/to/example.wav')
 ```
 
 Get the completed transcript. Transcripts take about half the duration of the
