@@ -145,6 +145,23 @@ transcript.dict
 For additional background see: https://docs.assemblyai.com
 
 
+## Troubleshooting
+
+Enable verbose logging by enabling the Client debug option:
+
+```Python
+import assemblyai
+
+aai = assemblyai.Client(debug=True)
+```
+
+More options to get unstuck:
+
+- Create an [Issue](https://github.com/AssemblyAI/assemblyai-python-sdk/issues)
+- Join us on [Slack](https://docs.assemblyai.com/help/#slacksupport)
+- Send us an [email](mailto:support@assemblyai.com)
+
+
 ## Development
 
 Install dev requirements, install from source and run tests.
