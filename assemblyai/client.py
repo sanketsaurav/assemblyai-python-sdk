@@ -1,7 +1,5 @@
 """Client module."""
 
-# import logging
-
 from assemblyai.config import ASSEMBLYAI_URL, ASSEMBLYAI_TOKEN
 # from assemblyai.exceptions import handle_warnings
 from assemblyai.model import Model

@@ -1,6 +1,6 @@
 """Exceptions for the assemblyai library."""
 
-import logging
+from assemblyai.config import log
 
 
 def handle_warnings(response, object):
@@ -16,7 +16,7 @@ def handle_warnings(response, object):
         response = response.json()[object]
     if 'warning' in response:
         warning = response['warning']
-        logging.warning('Warning: %s' % warning)
+        log.warning('Warning: %s' % warning)
     if response['status'] == 'error':
         msg = response['error']
         raise ServerError(msg)
