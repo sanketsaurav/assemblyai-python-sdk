@@ -1,5 +1,7 @@
 """Client module."""
 
+import logging
+
 from assemblyai.config import ASSEMBLYAI_URL, ASSEMBLYAI_TOKEN
 # from assemblyai.exceptions import handle_warnings
 from assemblyai.model import Model
@@ -10,12 +12,17 @@ from assemblyai.transcript import Transcript
 class Client(object):
     """Client for the AssemblyAI API."""
 
-    def __init__(self, token=None, email=None):
+    def __init__(self, token=None, debug=False):
         """Initialize client."""
         self.token = token or ASSEMBLYAI_TOKEN  # or trial_token()
         # validate_token(self.token)
         self.headers = {'authorization': self.token}
         self.api = ASSEMBLYAI_URL
+        self.log = logging.getLogger('AssemblyAI')
+        if debug:
+            self.log.setLevel(logging.DEBUG)
+        else:
+            self.log.setLevel(logging.ERROR)
 
     def __repr__(self):
         concat_token = self.token[0:8] + '..'

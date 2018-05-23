@@ -18,6 +18,7 @@ class Model(object):
         self.closed_domain = closed_domain
         self.name = name
         self.id = None
+        self.log = client.log
         self.status = None
         self.warning = None
         self.dict = None
@@ -48,7 +49,7 @@ class Model(object):
         payload = json.dumps(data)
         url = ASSEMBLYAI_URL + '/model'
         response = requests.post(url, data=payload, headers=self.headers)
-        self.warning = handle_warnings(response, 'model')
+        self.warning = handle_warnings(response, 'model', self.log)
         response = response.json()['model']
         self.id, self.status = response['id'], response['status']
         logging.debug('Model %s %s' % (self.id, self.status))
@@ -59,7 +60,7 @@ class Model(object):
         self.reset(id)
         url = ASSEMBLYAI_URL + '/model/' + str(self.id)
         response = requests.get(url, headers=self.headers)
-        self.warning = handle_warnings(response, 'model')
+        self.warning = handle_warnings(response, 'model', self.log)
         response = response.json()['model']
         # self.phrases = response['phrases']
         self.dict = response

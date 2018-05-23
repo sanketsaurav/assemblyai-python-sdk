@@ -1,9 +1,7 @@
 """Exceptions for the assemblyai library."""
 
-from assemblyai.config import log
 
-
-def handle_warnings(response, object):
+def handle_warnings(response, object, log):
     """Handle  warnings and exceptions."""
     warning = None
     if response.status_code >= 400 and response.status_code < 500:

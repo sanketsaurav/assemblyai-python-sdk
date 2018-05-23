@@ -163,4 +163,4 @@ Bug reports and pull requests welcome.
 
 ## Release notes
 
-**0.2.0** - Configured logging.
+**0.2.1** - Add debug mode to client.

@@ -18,6 +18,7 @@ class Transcript(object):
         self.filename = filename
         self.headers = client.headers
         self.id = None
+        self.log = client.log
         self.model = model
         self.segments = None
         self.speaker_count = None
@@ -75,7 +76,7 @@ class Transcript(object):
             payload = json.dumps(data)
             url = self.api + '/transcript'
             response = requests.post(url, data=payload, headers=self.headers)
-            self.warning = handle_warnings(response, 'transcript')
+            self.warning = handle_warnings(response, 'transcript', self.log)
             response = response.json()['transcript']
             self.id, self.status = response['id'], response['status']
             logging.debug('Transcript %s %s' % (self.id, self.status))
@@ -97,7 +98,7 @@ class Transcript(object):
         if self.id:
             url = self.api + '/transcript/' + str(self.id)
             response = requests.get(url, headers=self.headers)
-            self.warning = handle_warnings(response, 'transcript')
+            self.warning = handle_warnings(response, 'transcript', self.log)
             response = response.json()['transcript']
             self.dict = response
             self.id, self.status = response['id'], response['status']
