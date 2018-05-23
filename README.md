@@ -12,7 +12,7 @@
 
 Transcribe audio into text. Recognize made-up words and boost accuracy using custom language models.
 
-Documentation: 
+Documentation:
 - https://docs.assemblyai.com
 - https://assemblyai-python-sdk.readthedocs.io
 
@@ -163,4 +163,4 @@ Bug reports and pull requests welcome.
 
 ## Release notes
 
-**0.1.13** introduced the ability to transcribe local files (still experimental).
+**0.2.0** - Configured logging.
