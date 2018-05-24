@@ -10,7 +10,9 @@
 [![](https://img.shields.io/badge/Slack-community-71D4DF.svg)](https://docs.assemblyai.com/help/#slacksupport)
 ![](https://img.shields.io/badge/Badge%20count-9-ff69b4.svg)
 
-Transcribe audio into text. Recognize made-up words and boost accuracy using custom language models.
+Accurately recognize speech in your application with AssemblyAI.
+
+You can also train custom models to more accurately recognize speech in your application, and expand vocabulary with custom words like product/person names.
 
 Documentation:
 - https://docs.assemblyai.com
@@ -23,7 +25,7 @@ Issues: https://github.com/assemblyai/assemblyai-python-sdk
 
 ## Getting started
 
-Run pip install and get an API token from https://assemblyai.com
+Run pip install and email support@assemblyai.com for an API token (we reply at most within a few hours).
 
 ```shell
 pip install assemblyai
@@ -63,9 +65,9 @@ transcript = aai.transcribe(audio_url='https://example.com/example.wav')
 
 The quickstart example transcribes audio using a generic English model.
 
-In order to retain accuracy with unique word sets, create a custom model.
+In order to boost accuracy and recognize custom words, you can create a custom model. You can read more about how custom model work [in the docs](https://docs.assemblyai.com/guides/#custommodels101).
 
-For this example, we create a model using a **list** of words/sentences found on a wikipedia page.
+For this example, we create a model using the text found on a wikipedia page containing a list of Pokemon characters, so we can recognize Pokemon character names.
 
 Create the custom model.
 
