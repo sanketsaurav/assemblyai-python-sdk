@@ -100,7 +100,7 @@ transcript = aai.transcribe(audio_url='https://example.com/pokemon.wav', model=m
 
 ## Model and Transcript attributes
 
-Prior models and transcripts can by called by ID.
+Prior models and transcripts can be called by ID.
 
 ```python
 model = aai.model.get(id=<id>)
