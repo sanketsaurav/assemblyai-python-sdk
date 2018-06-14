@@ -97,27 +97,29 @@ class Transcript(object):
         elif self.model.status != 'trained':
             self.status = 'waiting for model'
 
+    def request(self):
+        url = self.api + '/transcript/' + str(self.id)
+        response = requests.get(url, headers=self.headers)
+        self.warning = handle_warnings(response, 'transcript', self.log)
+        response = response.json()['transcript']
+        return response
+
     def get(self, id=None):
         """Get a transcript."""
         self.reset(id)
         if self.model:
             self.check_model()
         if self.id:
-            url = self.api + '/transcript/' + str(self.id)
-            response = requests.get(url, headers=self.headers)
-            self.warning = handle_warnings(response, 'transcript', self.log)
-            response = response.json()['transcript']
+            response = self.request()
             self.dict = response
             self.id, self.status = response['id'], response['status']
-            # if self.status == 'completed':
-            self.text_raw = response['text']
+            self.text_raw = response['text']    # TODO deprecate
             self.text = response['text_formatted']
             self.confidence = response['confidence']
             self.segments = response['segments']
             self.speaker_count = response['speaker_count']
-            if 'options' in response:
-                if 'format_text' in response['options']:
-                    self.format_text = response['options']['format_text']
+            if 'options' in response and 'format_text' in response['options']:
+                self.format_text = response['options']['format_text']
         logging.debug('Transcript %s %s' % (self.id, self.status))
         return self
 
