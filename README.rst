@@ -49,27 +49,34 @@ Instead of a local file, you can also specify a url for the audio file:
 Custom language models
 ----------------------
 
-The quickstart example transcribes audio using a generic English language model.
+The quickstart example transcribes audio using a generic English model.
 
-In order to retain accuracy with unique word sets, create a custom language model.
+In order to boost accuracy and recognize custom words, you can create a custom
+model. You can read more about how custom model work
+[in the docs](https://docs.assemblyai.com/guides/#custommodels101).
 
-For this example, we create a model using a list of words/sentences found on a wikipedia page.
+Create a custom model.
 
     import assemblyai
-    import wikipedia
 
     aai = assemblyai.Client(token='your-secret-api-token')
 
-    phrases = wikipedia.page("Pokemon characters").content.split('\n')
+    # phrases is a list or words (real or made up) and sentences that you want to recognize
+    phrases = ["foobar", "Dirk Gently", "electric monk", "yourLingoHere",
+               "perhaps a common phrase here", "and a common response"]
 
     model = aai.train(phrases)
 
-    transcript = aai.transcribe(audio_url='https://example.com/pokemon.wav', model=model)
 
-    while transcript.status != 'completed':
-        transcript = transcript.get()
+Check to see that the model has finished training -- models take about six
+minutes to complete.
 
-    text = transcript.text
+    while model.status != 'trained':
+        model = model.get()
+
+Reference the model when creating a transcript.
+
+    transcript = aai.transcribe(filename='/path/to/example.wav', model=model)
 
 
 

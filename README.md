@@ -65,20 +65,20 @@ transcript = aai.transcribe(audio_url='https://example.com/example.wav')
 
 The quickstart example transcribes audio using a generic English model.
 
-In order to boost accuracy and recognize custom words, you can create a custom model. You can read more about how custom model work [in the docs](https://docs.assemblyai.com/guides/#custommodels101).
+In order to boost accuracy and recognize custom words, you can create a custom
+model. You can read more about how custom model work
+[in the docs](https://docs.assemblyai.com/guides/#custommodels101).
 
-For this example, we create a model using the text found on a wikipedia page containing a list of Pokemon characters, so we can recognize Pokemon character names.
-
-Create the custom model.
+Create a custom model.
 
 ```python
 import assemblyai
-import wikipedia
 
 aai = assemblyai.Client(token='your-secret-api-token')
 
-# phrases is a list or words or sentences
-phrases = wikipedia.page("List of Pokemon characters").content.split('. ')
+# phrases is a list or words (real or made up) and sentences that you want to recognize
+phrases = ["foobar", "Dirk Gently", "electric monk", "yourLingoHere",
+           "perhaps a common phrase here", "and a common response"]
 
 model = aai.train(phrases)
 ```
@@ -94,7 +94,7 @@ while model.status != 'trained':
 Reference the model when creating a transcript.
 
 ```python
-transcript = aai.transcribe(audio_url='https://example.com/pokemon.wav', model=model)
+transcript = aai.transcribe(filename='/path/to/example.wav', model=model)
 ```
 
 
