@@ -97,6 +97,26 @@ transcript = aai.transcribe(filename='/path/to/example.wav', model=model)
 ```
 
 
+## Transcribing stereo audio with two speakers on different channels
+
+For stereo audio with two speakers on separate channels, you can leverage
+enhanced accuracy and formatting by setting speak_count to 2.
+
+```python
+transcript = aai.transcribe('example.wav', speaker_count=2)
+```
+
+
+## Transcribing without formatted text
+
+To receive transcript text without formatting or punctuation, set the option
+format_text to False (default is True).
+
+```python
+transcript = aai.transcribe('example.wav', format_text=False)
+```
+
+
 ## Model and Transcript attributes
 
 Prior models and transcripts can be called by ID.
