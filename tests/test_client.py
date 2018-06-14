@@ -35,6 +35,8 @@ def test_client_transcribe():
     assert transcript_id == transcript.id
     transcript = transcript.get(id=transcript_id)
     assert transcript_id == transcript.id
+    assert 'id' in transcript.props()
+    assert 'id' in ('%s' % transcript)
 
 
 def test_client_train():
@@ -60,6 +62,8 @@ def test_client_train_transcribe():
     transcript = transcript.get()
     assert transcript.id is None
     assert transcript.status == 'waiting for model'
+    assert 'id' in model.props()
+    assert 'id' in ('%s' % model)
 
 
 def test_client_transcribe_mono_speaker_count_invalid():
