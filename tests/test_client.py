@@ -14,6 +14,8 @@ ASSEMBLYAI_TOKEN = os.environ.get('ASSEMBLYAI_TOKEN')
 AUDIO_URL = ('https://s3-us-west-2.amazonaws.com/'
              'assemblyai.prooflab/office_nine_degrees.wav')
 
+aai = Client(token=ASSEMBLYAI_TOKEN)
+
 
 def test_client_auth_error():
     """Test client without token throws auth error."""
@@ -24,7 +26,6 @@ def test_client_auth_error():
 
 def test_client_transcribe():
     """Test client token authenticates and creates transcript."""
-    aai = Client(token=ASSEMBLYAI_TOKEN)
     transcript = aai.transcribe(audio_url=AUDIO_URL)
     assert transcript.status == 'queued'
     transcript_id = transcript.id
@@ -38,7 +39,6 @@ def test_client_transcribe():
 
 def test_client_train():
     """Test client token authenticates and creates transcript."""
-    aai = Client(token=ASSEMBLYAI_TOKEN)
     model = aai.train(['foo', 'bar'])
     assert model.status == 'training'
     model_id = model.id
@@ -48,7 +48,6 @@ def test_client_train():
 
 def test_client_train_transcribe():
     """Test client token authenticates and creates transcript."""
-    aai = Client(token=ASSEMBLYAI_TOKEN)
     model = aai.train(['foo', 'bar'])
     assert model.status == 'training'
     model_id = model.id
@@ -64,8 +63,7 @@ def test_client_train_transcribe():
 
 
 def test_client_transcribe_mono_speaker_count_invalid():
-    """Test client token authenticates and creates transcript."""
-    aai = Client(token=ASSEMBLYAI_TOKEN)
+    """Test ability to set speaker_count."""
     transcript = aai.transcribe(audio_url=AUDIO_URL, speaker_count=2)
     assert transcript.status == 'queued'
     transcript_id = transcript.id
@@ -79,8 +77,7 @@ def test_client_transcribe_mono_speaker_count_invalid():
 
 
 def test_client_transcribe_format_text_false():
-    """Test client token authenticates and creates transcript."""
-    aai = Client(token=ASSEMBLYAI_TOKEN)
+    """Test ability to set option format_text."""
     transcript = aai.transcribe(audio_url=AUDIO_URL, format_text=False)
     assert transcript.status == 'queued'
     transcript_id = transcript.id
@@ -91,3 +88,29 @@ def test_client_transcribe_format_text_false():
     transcript = transcript.get(id=transcript_id)
     assert transcript_id == transcript.id
     assert transcript.format_text is False
+
+
+def test_client_transcribe_ambiguous_data():
+    """Test client ability to inspect data source."""
+    transcript = aai.transcribe(AUDIO_URL)
+    assert transcript.status == 'queued'
+    transcript_id = transcript.id
+    while transcript.status != 'completed':
+        transcript = transcript.get()
+    assert transcript.status == 'completed'
+    assert transcript_id == transcript.id
+    transcript = transcript.get(id=transcript_id)
+    assert transcript_id == transcript.id
+
+
+def test_client_transcribe_upload():
+    """Test client ability to upload file."""
+    transcript = aai.transcribe('tests/data/office.mp3')
+    assert transcript.status == 'queued'
+    transcript_id = transcript.id
+    while transcript.status != 'completed':
+        transcript = transcript.get()
+    assert transcript.status == 'completed'
+    assert transcript_id == transcript.id
+    transcript = transcript.get(id=transcript_id)
+    assert transcript_id == transcript.id
