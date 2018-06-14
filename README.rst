@@ -110,7 +110,6 @@ To inspect additional attributes, use `props()`:
     >>>  'status',
     >>>  'warning',
     >>>  'text',
-    >>>  'text_raw',
     >>>  'confidence',
     >>>  'segments',
     >>>  'speaker_count',
