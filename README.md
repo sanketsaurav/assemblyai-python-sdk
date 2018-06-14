@@ -134,6 +134,7 @@ transcript.props()
 >>>  'confidence',
 >>>  'segments',
 >>>  'speaker_count',
+>>>  'format_text',
 >>>  'dict']
 ```
 
