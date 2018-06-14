@@ -181,4 +181,4 @@ Bug reports and pull requests welcome.
 
 ## Release notes
 
-**0.2.2** - Add options for transcribing stereo audio and formatting text.
+**0.2.3** - Added tests for speaker_count and format_text options.
