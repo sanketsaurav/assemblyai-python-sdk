@@ -50,8 +50,9 @@ def test_client_train():
 
 def test_client_train_transcribe():
     """Test client token authenticates and creates transcript."""
-    model = aai.train(['foo', 'bar'])
+    model = aai.train(['foo', 'bar'], name='foobar')
     assert model.status == 'training'
+    assert model.name == 'foobar'
     model_id = model.id
     model = model.get()
     assert model_id == model.id
