@@ -8,7 +8,6 @@
 [![](https://codecov.io/gh/AssemblyAI/assemblyai-python-sdk/branch/master/graph/badge.svg)](https://codecov.io/gh/AssemblyAI/assemblyai-python-sdk)
 [![](https://api.codeclimate.com/v1/badges/a4fbbc5b564389549af7/maintainability)](https://codeclimate.com/repos/5afb734416a00d6f410000a9/maintainability)
 [![](https://img.shields.io/badge/Slack-community-71D4DF.svg)](https://docs.assemblyai.com/help/#slacksupport)
-![](https://img.shields.io/badge/Badge%20count-9-ff69b4.svg)
 
 Accurately recognize speech in your application with AssemblyAI.
 
@@ -183,4 +182,4 @@ Bug reports and pull requests welcome.
 
 ## Release notes
 
-**0.2.1** - Add debug mode to client.
+**0.2.2** - Add options for transcribing stereo audio and formatting text.
