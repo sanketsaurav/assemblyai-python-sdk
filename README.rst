@@ -7,7 +7,7 @@ Transcribe audio into text. Recognize made-up words and boost accuracy using cus
 
 - Documentation: https://assemblyai-python-sdk.readthedocs.io
 - Issues: https://github.com/assemblyai/assemblyai-python-sdk
-- Support: https://assemblyai.com
+- Support: https://docs.assemblyai.com/help/#slack
 - Community: https://assemblyaicommunity.slack.com
 
 

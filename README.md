@@ -17,7 +17,7 @@ Documentation:
 - https://docs.assemblyai.com
 - https://assemblyai-python-sdk.readthedocs.io
 
-Slack community: https://docs.assemblyai.com/help/#slacksupport
+Slack community: https://docs.assemblyai.com/help/#slack
 
 Issues: https://github.com/assemblyai/assemblyai-python-sdk
 
