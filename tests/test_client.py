@@ -75,7 +75,7 @@ def test_client_transcribe_mono_speaker_count_invalid():
     assert transcript_id == transcript.id
     transcript = transcript.get(id=transcript_id)
     assert transcript_id == transcript.id
-    # assert 'speaker' in transcript.segments[0]
+    assert transcript.speaker_count == 2
 
 
 def test_client_transcribe_format_text_false():
@@ -90,5 +90,4 @@ def test_client_transcribe_format_text_false():
     assert transcript_id == transcript.id
     transcript = transcript.get(id=transcript_id)
     assert transcript_id == transcript.id
-    assert 'options' in transcript
-    assert transcript['options']['format_text'] is False
+    assert transcript.format_text is False

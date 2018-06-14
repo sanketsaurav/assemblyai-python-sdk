@@ -115,6 +115,9 @@ class Transcript(object):
             self.confidence = response['confidence']
             self.segments = response['segments']
             self.speaker_count = response['speaker_count']
+            if 'options' in response:
+                if 'format_text' in response['options']:
+                    self.format_text = response['options']['format_text']
         logging.debug('Transcript %s %s' % (self.id, self.status))
         return self
 
