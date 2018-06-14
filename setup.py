@@ -11,7 +11,6 @@ with open('HISTORY.rst') as history_file:
 requirements = [
     'click>=6.7',
     'requests>=2.18.4',
-    'wikipedia>=1.4.0',
 ]
 
 setup_requirements = [
@@ -56,6 +55,6 @@ setup(
     test_suite='tests',
     tests_require=test_requirements,
     url='https://github.com/assemblyai/assemblyai-python-sdk',
-    version='0.2.1',
+    version='0.2.2',
     zip_safe=False,
 )

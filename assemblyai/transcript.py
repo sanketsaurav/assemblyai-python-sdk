@@ -10,7 +10,8 @@ import requests
 class Transcript(object):
     """Transcript object."""
 
-    def __init__(self, client, filename=None, audio_url=None, model=None):
+    def __init__(self, client, filename=None, audio_url=None, model=None,
+                 speaker_count=None, format_text=True):
         self.api = client.api
         self.audio_url = audio_url
         self.confidence = None
@@ -21,11 +22,12 @@ class Transcript(object):
         self.log = client.log
         self.model = model
         self.segments = None
-        self.speaker_count = None
+        self.speaker_count = speaker_count
         self.status = None
         self.text = None
         self.text_raw = None
         self.warning = None
+        self.format_text = format_text
 
     def __repr__(self):
         return 'Transcript(id=%s, status=%s, text=%s)' % (
@@ -50,6 +52,7 @@ class Transcript(object):
             self.text = None
             self.text_raw = None
             self.warning = None
+            self.format_text = True
 
     def validate(self):
         """Deconflict filename and audio_url."""
@@ -73,6 +76,10 @@ class Transcript(object):
             data['audio_src_url'] = self.audio_url
             if self.model:
                 data['model_id'] = self.model.id
+            if self.speaker_count:
+                data['speaker_count'] = self.speaker_count
+            if not self.format_text:
+                data['options'] = {'format_text': self.format_text}
             payload = json.dumps(data)
             url = self.api + '/transcript'
             response = requests.post(url, data=payload, headers=self.headers)
@@ -108,6 +115,9 @@ class Transcript(object):
             self.confidence = response['confidence']
             self.segments = response['segments']
             self.speaker_count = response['speaker_count']
+            if 'options' in response:
+                if 'format_text' in response['options']:
+                    self.format_text = response['options']['format_text']
         logging.debug('Transcript %s %s' % (self.id, self.status))
         return self
 
