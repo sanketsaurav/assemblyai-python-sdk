@@ -28,11 +28,10 @@ class Client(object):
         concat_token = self.token[0:8] + '..'
         return 'Client(token=%s)' % concat_token
 
-    def train(self, phrases, closed_domain=None, name=None):
+    def train(self, phrases, name=None):
         """Create a custom language model."""
         client = self
-        self.model = Model(client, phrases=phrases,
-                           closed_domain=closed_domain, name=name)
+        self.model = Model(client, phrases=phrases, name=name)
         self.model = self.model.create()
         return self.model
 

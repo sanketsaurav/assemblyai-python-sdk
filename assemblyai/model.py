@@ -11,11 +11,10 @@ import requests
 class Model(object):
     """Language model object."""
 
-    def __init__(self, client, phrases=None, closed_domain=None, name=None):
+    def __init__(self, client, phrases=None, name=None):
         self.headers = client.headers
         self.api = client.api
         self.phrases = phrases
-        self.closed_domain = closed_domain
         self.name = name
         self.id = None
         self.log = client.log
@@ -35,7 +34,6 @@ class Model(object):
             self.status = None
             self.name = None
             self.phrases = None
-            self.closed_domain = None
             self.warning = None
             self.dict = None
 
@@ -44,8 +42,6 @@ class Model(object):
         data["phrases"] = self.phrases  # TODO validate phrases
         if self.name:
             data['name'] = self.name
-        if self.closed_domain:
-            data['closed_domain'] = self.closed_domain
         payload = json.dumps(data)
         url = ASSEMBLYAI_URL + '/model'
         response = requests.post(url, data=payload, headers=self.headers)

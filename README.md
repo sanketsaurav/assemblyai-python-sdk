@@ -116,7 +116,6 @@ model.props()
 >>>  'status',
 >>>  'name',
 >>>  'phrases',
->>>  'closed_domain',
 >>>  'warning',
 >>>  'dict']
 
