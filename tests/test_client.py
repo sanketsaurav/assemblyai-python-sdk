@@ -20,7 +20,8 @@ aai = Client(token=ASSEMBLYAI_TOKEN)
 def test_client_auth_error():
     """Test client without token throws auth error."""
     with pytest.raises(ClientError):
-        aai = Client(token='foobar')
+        aai = Client(token='foobar', debug=True)
+        assert 'Client' in ('%s' % aai)
         aai.transcribe(audio_url=AUDIO_URL)
 
 
