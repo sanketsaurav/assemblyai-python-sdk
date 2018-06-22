@@ -25,7 +25,6 @@ class Transcript(object):
         self.speaker_count = speaker_count
         self.status = None
         self.text = None
-        self.text_raw = None
         self.warning = None
         self.format_text = format_text
 
@@ -113,8 +112,7 @@ class Transcript(object):
             response = self.request()
             self.dict = response
             self.id, self.status = response['id'], response['status']
-            self.text_raw = response['text']    # TODO deprecate
-            self.text = response['text_formatted']
+            self.text = response['text']
             self.confidence = response['confidence']
             self.segments = response['segments']
             self.speaker_count = response['speaker_count']
