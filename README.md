@@ -201,4 +201,4 @@ Bug reports and pull requests welcome.
 
 ## Release notes
 
-**0.2.4** - Added examples for speaker_count and format_text options.
+**0.2.5** - Deprecate `text_formatted` key
