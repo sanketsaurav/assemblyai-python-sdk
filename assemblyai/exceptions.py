@@ -5,10 +5,13 @@ def handle_errors(response, status_code):
     if status_code >= 400 and status_code < 500:
         msg = response.json()
         raise ClientError(msg)
-    if status_code >= 500:
+
+    elif status_code == 500:
         msg = 'Server error, developers have been alerted.'
         raise ServerError(msg)
-    pass
+
+    elif status_code > 500:
+        raise ClientError(status_code)
 
 
 def handle_warnings(response, object, log):
