@@ -8,6 +8,8 @@ from assemblyai.model import Model
 from assemblyai.transcript import Transcript
 # from assemblyai.token import trial_token, validate_token
 
+logging.basicConfig()
+
 
 class Client(object):
     """Client for the AssemblyAI API."""
@@ -18,6 +20,7 @@ class Client(object):
         # validate_token(self.token)
         self.headers = {'authorization': self.token}
         self.api = ASSEMBLYAI_URL
+
         self.log = logging.getLogger('AssemblyAI')
         if debug:
             self.log.setLevel(logging.DEBUG)

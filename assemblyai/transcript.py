@@ -49,7 +49,6 @@ class Transcript(object):
             self.speaker_count = None
             self.status = None
             self.text = None
-            self.text_raw = None
             self.warning = None
             self.format_text = True
 
@@ -65,7 +64,9 @@ class Transcript(object):
     def create(self):
         """Create a transcript."""
         # TODO remove model checking after api defaults to waiting for models
+        self.log.debug("validating create()")
         self.validate()
+        self.log.debug("validation complete")
         if self.model:
             self.model = self.model.get()
         if self.model and self.model.status != 'trained':
@@ -81,11 +82,13 @@ class Transcript(object):
                 data['options'] = {'format_text': self.format_text}
             payload = json.dumps(data)
             url = self.api + '/transcript'
+            self.log.debug("posting transcript")
             response = requests.post(url, data=payload, headers=self.headers)
+            self.log.debug("transcript posted")
             self.warning = handle_warnings(response, 'transcript', self.log)
             response = response.json()['transcript']
             self.id, self.status = response['id'], response['status']
-            logging.debug('Transcript %s %s' % (self.id, self.status))
+            self.log.debug('Transcript %s %s' % (self.id, self.status))
         return self
 
     def check_model(self):
@@ -118,15 +121,17 @@ class Transcript(object):
             self.speaker_count = response['speaker_count']
             if 'options' in response and 'format_text' in response['options']:
                 self.format_text = response['options']['format_text']
-        logging.debug('Transcript %s %s' % (self.id, self.status))
+        self.log.debug('Transcript %s %s' % (self.id, self.status))
         return self
 
     def upload(self, filepath):
         """Upload a file."""
         upload_url = 'https://api.assemblyai.com/upload'
         presigned_url = requests.post(upload_url, headers=self.headers).text
+        self.log.debug(presigned_url)
         url = presigned_url.split('?')[0]
         with open(filepath, 'rb') as f:
             r = requests.put(presigned_url, data=f.read())
         r.raise_for_status()
+        self.log.debug("upload complete to %s" % url)
         return url
