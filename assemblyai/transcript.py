@@ -49,7 +49,6 @@ class Transcript(object):
             self.speaker_count = None
             self.status = None
             self.text = None
-            self.text_raw = None
             self.warning = None
             self.format_text = True
 
