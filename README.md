@@ -9,7 +9,7 @@
 [![](https://img.shields.io/badge/Slack-community-71D4DF.svg)](https://docs.assemblyai.com/help/#slack)
 <!-- [![](https://readthedocs.org/projects/assemblyai-python-sdk/badge/?version=latest)](https://readthedocs.org/projects/assemblyai-python-sdk) -->
 
-Accurately recognize speech in your application with AssemblyAI.
+Integrate the AssemblyAI API to accurately recognize speech in your application.
 
 You can also train custom models to more accurately recognize speech in your application, and expand vocabulary with custom words like product/person names.
 
@@ -24,7 +24,7 @@ Issues: https://github.com/assemblyai/assemblyai-python-sdk
 
 ## Getting started
 
-Run pip install and email support@assemblyai.com for an API token (we reply at most within a few hours).
+First, [get an API token](https://www.assemblyai.com/), and then pip install the SDK.
 
 ```shell
 pip install assemblyai
@@ -62,11 +62,9 @@ transcript = aai.transcribe(audio_url='https://example.com/example.wav')
 
 ## Custom models
 
-The quickstart example transcribes audio using a generic English model.
-
-In order to boost accuracy and recognize custom words, you can create a custom
-model. You can read more about how custom model work
-[in the docs](https://docs.assemblyai.com/guides/#custommodels101).
+The quickstart example transcribes audio using our default model. In order to boost
+accuracy and recognize custom words, you can create a custom model. You can read more
+about how custom model work [in the docs](https://docs.assemblyai.com/guides/custom_models_101/).
 
 Create a custom model.
 
@@ -75,7 +73,8 @@ import assemblyai
 
 aai = assemblyai.Client(token='your-secret-api-token')
 
-# phrases is a list or words (real or made up) and sentences that you want to recognize
+# boost accuracy for keywords/phrases, and add custom words
+# to the vocabulary
 phrases = ["foobar", "Dirk Gently", "electric monk", "yourLingoHere",
            "perhaps a common phrase here", "and a common response"]
 
@@ -148,11 +147,9 @@ transcript.props()
 >>>  'status',
 >>>  'warning',
 >>>  'text',
->>>  'text_raw',
 >>>  'confidence',
 >>>  'segments',
 >>>  'speaker_count',
->>>  'format_text',
 >>>  'dict']
 ```
 
@@ -163,7 +160,7 @@ model.dict
 transcript.dict
 ```
 
-For additional background see: https://docs.assemblyai.com
+For additional background on the raw API response, see: [https://docs.assemblyai.com](https://docs.assemblyai.com)
 
 
 ## Troubleshooting
