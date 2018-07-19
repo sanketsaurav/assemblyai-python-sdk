@@ -27,25 +27,28 @@ class Client(object):
         else:
             self.log.setLevel(logging.ERROR)
 
+        self.model = Model(self)
+        self.transcript = Transcript(self)
+
     def __repr__(self):
         concat_token = self.token[0:8] + '..'
         return 'Client(token=%s)' % concat_token
 
     def train(self, phrases, name=None):
-        """Create a custom language model."""
+        """Create a custom model."""
         client = self
-        self.model = Model(client, phrases=phrases, name=name)
-        self.model = self.model.create()
-        return self.model
+        model = Model(client, phrases=phrases, name=name)
+        model = model.create()
+        return model
 
     def transcribe(self, filename=None, audio_url=None, model=None,
                    speaker_count=None, format_text=True):
         """Create a transcript request. If the transcript depends on a
-        custom language model, defer creation until model is trained."""
+        custom model, defer creation until model is trained."""
         client = self
-        self.transcript = Transcript(client, filename=filename,
-                                     audio_url=audio_url, model=model,
-                                     speaker_count=speaker_count,
-                                     format_text=format_text)
-        self.transcript = self.transcript.create()
-        return self.transcript
+        transcript = Transcript(client, filename=filename,
+                                audio_url=audio_url, model=model,
+                                speaker_count=speaker_count,
+                                format_text=format_text)
+        transcript = transcript.create()
+        return transcript

@@ -120,3 +120,13 @@ def test_client_transcribe_upload():
     assert transcript_id == transcript.id
     transcript = transcript.get(id=transcript_id)
     assert transcript_id == transcript.id
+
+
+def test_client_get_transcript():
+    with pytest.raises(ClientError):
+        transcript = aai.transcript.get(id=1)
+
+
+def test_client_get_model():
+    with pytest.raises(ClientError):
+        model = aai.model.get(id=1)
