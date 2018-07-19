@@ -80,6 +80,7 @@ Ready to contribute? Here's how to set up `assemblyai-python-sdk` for local deve
    tests, including testing other Python versions with tox::
 
     $ flake8 assemblyai-python-sdk tests
+    $ export ASSEMBLYAI_TOKEN=<your-token>
     $ python setup.py test or py.test
     $ tox
 

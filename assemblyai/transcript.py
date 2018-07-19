@@ -1,7 +1,6 @@
 """Transcript module."""
 
 import json
-import logging
 
 from assemblyai.exceptions import handle_warnings
 import requests

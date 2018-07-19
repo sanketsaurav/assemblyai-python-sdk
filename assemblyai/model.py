@@ -1,7 +1,6 @@
 """Model module."""
 
 import json
-import logging
 
 from assemblyai.config import ASSEMBLYAI_URL
 from assemblyai.exceptions import handle_warnings
@@ -9,7 +8,7 @@ import requests
 
 
 class Model(object):
-    """Language model object."""
+    """Custom model object."""
 
     def __init__(self, client, phrases=None, name=None):
         self.headers = client.headers
@@ -48,11 +47,11 @@ class Model(object):
         self.warning = handle_warnings(response, 'model', self.log)
         response = response.json()['model']
         self.id, self.status = response['id'], response['status']
-        logging.debug('Model %s %s' % (self.id, self.status))
+        self.log.debug('Model %s %s' % (self.id, self.status))
         return self
 
     def get(self, id=None):
-        """Get a language model."""
+        """Get a custom model."""
         self.reset(id)
         url = ASSEMBLYAI_URL + '/model/' + str(self.id)
         response = requests.get(url, headers=self.headers)
@@ -61,5 +60,5 @@ class Model(object):
         # self.phrases = response['phrases']
         self.dict = response
         self.status = response['status']
-        logging.debug('Model %s %s' % (self.id, self.status))
+        self.log.debug('Model %s %s' % (self.id, self.status))
         return self
